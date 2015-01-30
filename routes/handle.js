@@ -5,8 +5,9 @@ var moment = require('moment');
 var mongoose = require('../libs/mongoose.js');
 router.post('/addPage', function (req, res) {
     var url = req.body.url;
+    var user_id = req.body.user_id;
     readability(url, function (err, article) {
-        addArticleToDB(article, url, function (result) {
+        addArticleToDB(article, url,user_id, function (result) {
             article.close();
             if (result) {
                 res.send('{"result":"TRUE"}');
@@ -16,10 +17,11 @@ router.post('/addPage', function (req, res) {
         });
     });
 });
-router.get('/addPage/:url', function (req, res) {
+router.get('/addPage/:url/:uid', function (req, res) {
     var url = decodeURIComponent(req.params.url);
+    var user_id = req.params.uid;
     readability(url, function (err, article) {
-        addArticleToDB(article, url, function (result) {
+        addArticleToDB(article, url,user_id, function (result) {
             article.close();
             if (result) {
                 res.send('{"result":"TRUE"}');
@@ -29,9 +31,10 @@ router.get('/addPage/:url', function (req, res) {
         });
     });
 });
-function addArticleToDB(article, url, cb) {
+function addArticleToDB(article, url,user_id, cb) {
     var articleModel = require('../models/article.js');
     var data = new articleModel({
+        user_id:user_id,
         title: article.title,
         content: article.content,
         url: url,
