@@ -4,7 +4,6 @@ var mongoose = require('mongoose')
 
 var ArticleSchema = new Schema({
     user_id:String,
-    nickname:String,
     title: String,
     content: String,
     url: String,
