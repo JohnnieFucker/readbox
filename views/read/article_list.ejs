@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReadBox</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+<body>
+<div class="contentBox">
+    <ul>
+        <%for (var i=0;i<articles.length;i++){%>
+            <li><a href="/read/<%=articles[i]._id%>" target="_blank"><%=articles[i].title%></a></li>
+        <%}%>
+    </ul>
+</div>
+</body>
+</html>
