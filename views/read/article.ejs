@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReadBox</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+<body>
+<div class="contentBox">
+    <h1><%=article.title %></h1>
+    <a href="<%=article.url %>" target="_blank">原网页</a>采集于<%=article.created%>
+   <%-article.content%>
+</div>
+</body>
+</html>
