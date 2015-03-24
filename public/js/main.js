@@ -12,7 +12,9 @@ function delArticle(page_id){
             success: function (res) {
                if(res.result=='TRUE'){
                    showMsg('done');
-                   closeWebPage();
+                   setTimeout(function(){
+                       closeWebPage();
+                   },3000);
                }else{
                    showMsg('oops! sth wrong！');
                }
