@@ -6,7 +6,7 @@ function delArticle(page_id){
         {
             type: 'POST',
             url: '/handle/delPage',
-            data: {page_id: page_id},
+            data: {"page_id": page_id},
             dataType: 'JSON',
             cache: false,
             success: function (res) {
