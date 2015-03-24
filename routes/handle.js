@@ -19,11 +19,8 @@ router.post('/addPage', function (req, res) {
 });
 router.post('/delPage', function (req, res) {
     var page_id = req.body.page_id;
-    console.log(page_id);
     var articleModel = require('../models/article.js');
-    var data = new articleModel();
-    console.log(page_id);
-    data.remove({_id:page_id},function (err) {
+    articleModel.remove({_id:page_id},function (err) {
         if (err) {
             console.log(err);
             res.send('{"result":"FALSE"}');
