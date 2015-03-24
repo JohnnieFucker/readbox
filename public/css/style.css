@@ -34,10 +34,10 @@ pre {
     margin: 30px auto
 }
 
-#msgBox{
-    width:200px;
+#msgBox {
+    width: 200px;
     position: absolute;
-    top:15px;
+    top: 15px;
     height: 40px;
     line-height: 40px;
     left: 0;
@@ -47,10 +47,12 @@ pre {
     border-radius: 3px;
     display: none;
 }
-#btnDel{
+
+#btnDel {
     display: inline-block;
     background: transparent;
-    border: none
-    float:right;
+    border: none float : right;
     padding: 5px;
+    color: #00B7FF;
+    text-decoration: underline;
 }
