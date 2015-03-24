@@ -17,6 +17,19 @@ router.post('/addPage', function (req, res) {
         });
     });
 });
+router.post('/delPage', function (req, res) {
+    var page_id = req.body.page_id;
+    var articleModel = require('../models/article.js');
+    var data = new articleModel();
+    data.remove({_id:page_id},function (err) {
+        if (err) {
+            console.log(err);
+            res.send('{"result":"FALSE"}');
+            return;
+        }
+        res.send('{"result":"TRUE"}');
+    });
+});
 router.get('/addPage/:url/:uid', function (req, res) {
     var url = decodeURIComponent(req.params.url);
     var user_id = req.params.uid;

@@ -18,7 +18,10 @@ router.get('/read/:articleId',function(req,res){
 });
 router.get('/readbox/:user_id',function(req,res){
     var articleModel = require('../models/article.js');
-    articleModel.find({"user_id":req.params.user_id},"_id title",function(error, result){
+    articleModel.find({user_id:req.params.user_id})
+        .sort({created:-1})
+        .select("_id title")
+        .exec(function(error, result){
         if(error) {
             console.log(error);
             res.render('error', { message: 'DB错误' });
