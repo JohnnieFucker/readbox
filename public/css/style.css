@@ -47,3 +47,10 @@ pre {
     border-radius: 3px;
     display: none;
 }
+#btnDel{
+    display: inline-block;
+    background: transparent;
+    border: none
+    float:right;
+    padding: 5px;
+}
