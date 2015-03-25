@@ -3,6 +3,7 @@ var router = express.Router();
 var readability = require('node-readability');
 var moment = require('moment');
 var mongoose = require('../libs/mongoose.js');
+var toMarkdown = require('to-markdown').toMarkdown;
 router.post('/addPage', function (req, res) {
     var url = req.body.url;
     var user_id = req.body.user_id;
@@ -41,6 +42,30 @@ router.get('/addPage/:url/:uid', function (req, res) {
                 res.send('{"result":"FALSE"}');
             }
         });
+    });
+});
+router.get('/createMarkdown/:article_id', function (req, res) {
+    var articleModel = require('../models/article.js');
+    articleModel.findById(req.params.article_id,function(error, result){
+        if(error) {
+            res.send('操作失败');
+            return false;
+        } else {
+            var content = result.content.toString();
+            content = content.replace(/<span>/ig, "");
+            content = content.replace(/<\/span>/ig, "");
+            content = content.replace(/\n/ig, "");
+            var mkContent = toMarkdown(content);
+
+            mkContent = '转载自：['+result.title+']('+result.url+') \n\n' + mkContent;
+
+            res.writeHeader(200, {
+                "Content-Type": "application/x-msdownload",
+                "Content-Disposition":"attachment;filename=article.md"
+            });
+            res.write(mkContent);
+            res.end();
+        }
     });
 });
 function addArticleToDB(article, url,user_id, cb) {

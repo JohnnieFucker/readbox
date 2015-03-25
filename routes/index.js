@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('../libs/mongoose.js');
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.redirect('/readbox/52037282f5b7879676000004');
 });
 router.get('/read/:articleId',function(req,res){
     var articleModel = require('../models/article.js');

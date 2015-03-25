@@ -26,6 +26,7 @@
     "mongoose": "^3.8.22",
     "morgan": "~1.5.1",
     "node-readability": "^1.0.0",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "to-markdown": "0.0.3"
   }
 }
