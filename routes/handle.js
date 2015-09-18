@@ -75,7 +75,7 @@ router.get('/getList/:time_stamp',function(req,res){
     var articleModel = require('../models/article.js');
     articleModel.find({created:{"$gt":req.params.time_stamp}})
         .sort({created:-1})
-        .select("_id title content")
+        .select("_id title content created")
         .exec(function(error, result){
             if(error) {
                 res.send('{"result":"false","err":"db_error"}');
