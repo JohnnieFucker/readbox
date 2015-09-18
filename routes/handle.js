@@ -4,6 +4,9 @@ var readability = require('node-readability');
 var moment = require('moment');
 var mongoose = require('../libs/mongoose.js');
 var toMarkdown = require('to-markdown').toMarkdown;
+var _ = require('underscore');
+var _s = require('underscore.string');
+
 router.post('/addPage', function (req, res) {
     var url = req.body.url;
     var user_id = req.body.user_id;
@@ -68,15 +71,24 @@ router.get('/createMarkdown/:article_id', function (req, res) {
         }
     });
 });
-router.get('/getList/:user_id',function(req,res){
+router.get('/getList/:time_stamp',function(req,res){
     var articleModel = require('../models/article.js');
-    articleModel.find({user_id:req.params.user_id})
+    articleModel.find({created:{"$gt":req.params.time_stamp}})
         .sort({created:-1})
-        .select("_id title")
+        .select("_id title content")
         .exec(function(error, result){
             if(error) {
                 res.send('{"result":"false","err":"db_error"}');
             } else {
+                _.each(result,function(item){
+                   if(item.title.length >30){
+                       item.title = subString(item.title,30,true);
+                   }
+                   item.content = delHtmlTag(item.content);
+                   if(item.content.length>100){
+                       item.content =  subString(item.content,100,true);
+                   }
+                });
                 var returnObj = {
                     result:"true",
                     data:result
@@ -102,6 +114,34 @@ function addArticleToDB(article, url,user_id, cb) {
         }
         cb(true);
     });
+}
+function subString(str, len, hasDot)
+{
+    var newLength = 0;
+    var newStr = "";
+    var chineseRegex = /[^\x00-\xff]/g;
+    var singleChar = "";
+    var strLength = str.replace(chineseRegex,"**").length;
+    for(var i = 0;i < strLength;i++){
+        singleChar = str.charAt(i).toString();
+        if(singleChar.match(chineseRegex) != null){
+            newLength += 2;
+        }else{
+            newLength++;
+        }
+        if(newLength > len){
+            break;
+        }
+        newStr += singleChar;
+    }
+
+    if(hasDot && strLength > len){
+        newStr += "...";
+    }
+    return newStr;
+}
+function delHtmlTag(str){
+    return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
 }
 
 module.exports = router;
