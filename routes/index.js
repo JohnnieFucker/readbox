@@ -5,6 +5,7 @@ var mongoose = require('../libs/mongoose.js');
 router.get('/', function(req, res) {
   res.redirect('/readbox/52037282f5b7879676000004');
 });
+
 router.get('/read/:articleId',function(req,res){
     var articleModel = require('../models/article.js');
     articleModel.findById(req.params.articleId,function(error, result){

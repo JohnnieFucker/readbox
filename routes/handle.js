@@ -68,6 +68,23 @@ router.get('/createMarkdown/:article_id', function (req, res) {
         }
     });
 });
+router.get('/getList/:user_id',function(req,res){
+    var articleModel = require('../models/article.js');
+    articleModel.find({user_id:req.params.user_id})
+        .sort({created:-1})
+        .select("_id title")
+        .exec(function(error, result){
+            if(error) {
+                res.send('{"result":"false","err":"db_error"}');
+            } else {
+                var returnObj = {
+                    result:"true",
+                    data:result
+                };
+                res.send(JSON.stringify(returnObj));
+            }
+        });
+});
 function addArticleToDB(article, url,user_id, cb) {
     var articleModel = require('../models/article.js');
     var data = new articleModel({
