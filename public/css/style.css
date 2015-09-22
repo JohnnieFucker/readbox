@@ -59,3 +59,17 @@ pre {
     font-size: 1em;
     cursor: pointer;
 }
+@media (max-width: 780px) {
+    body {
+        padding: 10px;
+        font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
+        background-color: #f0f0f0;
+        color: #302c22;
+        font-size: 120%;
+        line-height: 1.6
+    }
+
+    .btnDel {
+        display: none;
+    }
+}
