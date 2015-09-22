@@ -9,7 +9,7 @@
 <body>
 <div id="msgBox"></div>
 <div class="contentBox">
-    <h1><%=article.title %></h1>
+    <h3><%=article.title %></h3>
     <a href="<%=article.url %>" target="_blank">原网页</a>采集于<%=article.created%>
     <a class="btnDel" href="/handle/createMarkdown/<%=article._id %>" target="_blank">MarkDown</a>
     <button class="btnDel" onclick="delArticle('<%=article._id %>');">删除</button>
