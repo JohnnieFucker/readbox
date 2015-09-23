@@ -99,21 +99,26 @@ router.get('/getList/:time_stamp',function(req,res){
 });
 function addArticleToDB(article, url,user_id, cb) {
     var articleModel = require('../models/article.js');
-    var data = new articleModel({
-        user_id:user_id,
-        title: article.title,
-        content: article.content,
-        url: url,
-        created: moment().format('YYYY-MM-DD HH:mm:ss')
-    });
-    data.save(function (err) {
-        if (err) {
-            console.log(err);
-            cb(false);
-            return;
-        }
-        cb(true);
-    });
+    if(article&&article.title&&article.content){
+        var data = new articleModel({
+            user_id:user_id,
+            title: article.title,
+            content: article.content,
+            url: url,
+            created: moment().format('YYYY-MM-DD HH:mm:ss')
+        });
+        data.save(function (err) {
+            if (err) {
+                console.log(err);
+                cb(false);
+                return;
+            }
+            cb(true);
+        });
+    }else{
+        cb(false);
+    }
+
 }
 function subString(str, len, hasDot)
 {
