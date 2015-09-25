@@ -153,6 +153,8 @@ function delHtmlTag(str){
 function delBlank(str){
     var _tmp = str.replace(/\t/g,"");//把所有/t替换掉
     _tmp = _tmp.replace(/\r/g,"");//把所有/r替换掉
+    _tmp = _s.trim(_tmp,' \n');//把前后的换行替换掉
+    _tmp = _s.trim(_tmp,'\n ');//把前后的换行替换掉
     _tmp = _s.trim(_tmp,'\n');//把前后的换行替换掉
     return _tmp;
 
