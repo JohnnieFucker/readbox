@@ -85,6 +85,8 @@ router.get('/getList/:time_stamp',function(req,res){
                        item.title = subString(item.title,30,true);
                    }
                    item.content = delHtmlTag(item.content);
+                   item.content = item.content.substr(0,300);
+                   item.content = delBlank(item.content);
                    if(item.content.length>100){
                        item.content =  subString(item.content,100,true);
                    }
@@ -147,6 +149,13 @@ function subString(str, len, hasDot)
 }
 function delHtmlTag(str){
     return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+}
+function delBlank(str){
+    var _tmp = str.replace(/\t/g,"");//把所有/t替换掉
+    _tmp = _tmp.replace(/\r/g,"");//把所有/r替换掉
+    _tmp = _s.trim(_tmp,'\n');//把前后的换行替换掉
+    return _tmp;
+
 }
 
 module.exports = router;
