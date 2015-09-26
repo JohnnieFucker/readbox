@@ -10,10 +10,12 @@ router.get('/read/:articleId',function(req,res){
     var articleModel = require('../models/article.js');
     articleModel.findById(req.params.articleId,function(error, result){
         if(error) {
-            console.log(error);
             res.render('error', { message: '未找到这篇文章' });
         } else {
-            res.render('read/article.ejs',{article:result});
+            if(result){
+                res.render('read/article.ejs',{article:result});
+            }
+            res.render('error', { message: '未找到这篇文章' });
         }
     });
 });
