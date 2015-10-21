@@ -8,7 +8,7 @@ var jwtSecret = require(utils.configDir + '/serverConfig.json').jwtSecret;
 var jwtHandler = {
     checkJWT: function (req, cb) {
         var jwtStr = req.headers['x-json-web-token'] || '';
-        if (jwtStr != '') {
+        if (jwtStr&&jwtStr != '') {
             var payload = jwt.decode(jwtStr, jwtSecret);
             if (payload && payload.user_id && payload.token) {
                 redis.getAsync('token:' + payload.user_id).then(function (result) {
