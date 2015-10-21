@@ -1,21 +1,26 @@
 'use strict';
 var BaseRouter = require('../libs/baseRoute');
-var handler = require('../services/userService.js');
+var handler = require('../services/articleService.js');
 
 var services = [];
 
-//登录接口
+//添加
 services.push({
     type:'post',
-    url:'/login',
-    handler:handler.login
+    url:'/add',
+    handler:handler.add
 });
 
-//登录接口
 services.push({
     type:'post',
-    url:'/register',
-    handler:handler.register
+    url:'/del',
+    handler:handler.del
+});
+
+services.push({
+    type:'get',
+    url:'/createMarkdown',
+    handler:handler.createMarkdown
 });
 
 class Router extends BaseRouter{

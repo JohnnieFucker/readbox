@@ -2,8 +2,7 @@ var http = require('http'),
     fs = require('fs'),
     moment = require('moment'),
     Promise = require('bluebird'),
-    crypto = require('crypto'),
-    colors = require('colors');
+    crypto = require('crypto')
 
 var utils = {};
 
@@ -12,13 +11,13 @@ global.log = function (m) {
 };
 global.warn = function (m) {
     if(typeof m === 'string'){
-        return console.warn(m.yellow);  //对string包装来自colors
+        return console.warn(m);
     }
     console.warn(m);
 };
 global.error = function (m) {
     if(typeof m === 'string'){
-        return console.error(m.red);  //对string包装来自colors
+        return console.error(m);
     }
     console.error(m);
 };
@@ -87,9 +86,9 @@ utils.env = (function () {
 })();
 
 utils.configDir = (function () {
-    var path = '../config.dev';
+    var path = process.cwd()+'/config.dev';
     if (utils.env == 'production') {
-        path = '../config.production';
+        path = process.cwd()+'/config.production';
     }
     return path;
 })();

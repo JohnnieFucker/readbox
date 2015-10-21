@@ -13,6 +13,7 @@ var jwtHandler = {
             if (payload && payload.user_id && payload.token) {
                 redis.getAsync('token:' + payload.user_id).then(function (result) {
                     if (result == payload.token) {
+                        req.session.user_id = payload.user_id;
                         return cb(true);
                     }
                     cb(false);

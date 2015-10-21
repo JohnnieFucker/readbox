@@ -7,7 +7,12 @@ var ArticleSchema = new Schema({
     title: String,
     content: String,
     url: String,
+    url_md5:String,
     created: String
 },{versionKey: false});
 
-module.exports = mongoose.model('Article', ArticleSchema);
+var Model = {
+    schema: mongoose.model('articles', ArticleSchema)
+};
+
+module.exports = Model;

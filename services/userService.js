@@ -7,8 +7,8 @@ var service = new BaseService();
 
 //登录
 service.login = function(req, res, next){
-    var loginName = req.params.loginName;
-    var pwd = req.params.pwd;
+    var loginName = req.body.loginName;
+    var pwd = req.body.pwd;
     User.schema.findOne({ "$or":[{phone:loginName},{email:loginName}]}).exec(function (err, result) {
         if (err) {
             return service.restError(res,-1,'db_error');
@@ -19,20 +19,20 @@ service.login = function(req, res, next){
             if(result.pwd==pwd){
                 delete(result.pwd);
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
-                    service.restSuccess(res,next,result,{jwt:jwt});
+                    service.restSuccess(res,result,{jwt:jwt});
                 });
             }
         }else{
-            service.restError(res,next,-1,'db_error');
+            service.restError(res,-1,'db_error');
         }
     });
 };
 
 //登录
 service.register = function(req, res, next){
-    var loginName = req.params.loginName;
-    var pwd = req.params.pwd;
-    var nickName = req.params.nickname;
+    var loginName = req.body.loginName;
+    var pwd = req.body.pwd;
+    var nickName = req.body.nickname;
     pwd = utils.base64_decode(pwd);
     pwd = utils.generatePass(pwd);
     User.schema.findOne({ "$or":[{phone:loginName},{email:loginName},{nickname:nickName}]}).exec(function (err, result) {
@@ -40,7 +40,7 @@ service.register = function(req, res, next){
             return service.restError(res,-1,'db_error');
         }
         if (result) {
-            service.restError(res,next,-1,'user exist');
+            service.restError(res,-1,'user exist');
         }else{
             var email ='';
             var phone ='';
@@ -51,7 +51,7 @@ service.register = function(req, res, next){
                 phone = loginName;
             }
             if(email==''&&phone ==''){
-                service.restError(res,next,-1,'loginname error');
+                service.restError(res,-1,'loginname error');
             }
             var newUser = new User.schema({
                 nickname:nickName,
@@ -64,11 +64,11 @@ service.register = function(req, res, next){
             newUser.save(function (err,result) {
                 if (err) {
                     //console.log(err);
-                    service.restError(res,next,-1,'db_error');
+                    service.restError(res,-1,'db_error');
                     return;
                 }
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
-                    service.restSuccess(res,next,result,{jwt:jwt});
+                    service.restSuccess(res,result,{jwt:jwt});
                 });
             });
         }

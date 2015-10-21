@@ -17,7 +17,7 @@ class BaseService{
 /**
  * 处理成功返回
  */
-function restSuccess(res,next, data, other_datas){
+function restSuccess(res, data, other_datas){
     var result = {result: RESULT_TRUE};
     if (data) {
         result.data = data;
@@ -33,13 +33,12 @@ function restSuccess(res,next, data, other_datas){
     }else{
         rest(res,result);
     }
-    next();
 }
 
 /**
  * 处理错误返回
  */
-function restError(res,next, err_code, err_msg){
+function restError(res,err_code, err_msg){
     var result = {result: RESULT_FALSE};
     if (err_code) {
         result.errorcode = err_code;
@@ -53,7 +52,6 @@ function restError(res,next, err_code, err_msg){
     }else{
         rest(res,result);
     }
-    next();
 }
 
 function rest(res, data){

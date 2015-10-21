@@ -3,14 +3,17 @@ var fs = require('fs');
 var path = require('path');
 var debug = require('debug')('importer');
 
-function dispatchImporter(rel__dirname) {
+function dispatchImporter() {
     function importer(from) {
+        from = path.relative(process.cwd(),from);
+        //console.log(from);
         var imported = {};
         var joinPath = function() {
-            return '.' + path.sep + path.join.apply(path, arguments);
+            return process.cwd()+path.sep+path.join.apply(path, arguments);
         };
-        var fsPath = joinPath(path.relative(process.cwd(), rel__dirname), from);
+        var fsPath = joinPath(from);
         fs.readdirSync(fsPath).forEach(function(name) {
+            //console.log(name);
             var info = fs.statSync(path.join(fsPath, name));
             if (info.isDirectory()) {
                 imported[name] = importer(joinPath(from, name));
@@ -18,7 +21,8 @@ function dispatchImporter(rel__dirname) {
                 var ext = path.extname(name);
                 var base = path.basename(name, ext);
                 if (require.extensions[ext]) {
-                    imported[base] = require(path.join(rel__dirname, from, name));
+                    //console.log(path.join(fsPath, name));
+                    imported[base] = require(path.join(fsPath, name));
                 } else {
                     debug('cannot require ', name);
                 }
