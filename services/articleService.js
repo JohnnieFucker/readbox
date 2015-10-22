@@ -6,8 +6,6 @@ var utils = require('../libs/utils.js');
 var readability = require('node-readability');
 var moment = require('moment');
 var toMarkdown = require('to-markdown').toMarkdown;
-var _ = require('underscore');
-var _s = require('underscore.string');
 
 var service = new BaseService();
 
@@ -92,7 +90,7 @@ service.getList = function (req, res, next) {
     Article.schema.find({title:{"$ne":""},content:{"$ne":""}})
         .skip(skip)
         .limit(limit)
-        .sort('{created:-1}')
+        .sort({created:-1})
         .exec(function(error, result) {
             if (error) {
                 service.restError(res, next, -1, 'db_error');
@@ -100,13 +98,13 @@ service.getList = function (req, res, next) {
             }
             _.each(result, function (item) {
                 if (item.title.length > 30) {
-                    item.title = subString(item.title, 30, true);
+                    item.title = utils.subString(item.title, 30, true);
                 }
-                item.content = delHtmlTag(item.content);
+                item.content = utils.delHtmlTag(item.content);
                 item.content = item.content.substr(0, 300);
-                item.content = delBlank(item.content);
+                item.content = utils.delBlank(item.content);
                 if (item.content.length > 100) {
-                    item.content = subString(item.content, 100, true);
+                    item.content = utils.subString(item.content, 100, true);
                 }
             });
             service.restSuccess(res,result);
@@ -124,13 +122,13 @@ function getList(articleIds,res,next){
             }
             _.each(result, function (item) {
                 if (item.title.length > 30) {
-                    item.title = subString(item.title, 30, true);
+                    item.title = utils.subString(item.title, 30, true);
                 }
-                item.content = delHtmlTag(item.content);
+                item.content = utils.delHtmlTag(item.content);
                 item.content = item.content.substr(0, 300);
-                item.content = delBlank(item.content);
+                item.content = utils.delBlank(item.content);
                 if (item.content.length > 100) {
-                    item.content = subString(item.content, 100, true);
+                    item.content = utils.subString(item.content, 100, true);
                 }
             });
             service.restSuccess(res,result);
@@ -166,42 +164,7 @@ function addArticleToDB(article, url, url_md5, user_id, next) {
     }
 }
 
-function subString(str, len, hasDot) {
-    var newLength = 0;
-    var newStr = "";
-    var chineseRegex = /[^\x00-\xff]/g;
-    var singleChar = "";
-    var strLength = str.replace(chineseRegex, "**").length;
-    for (var i = 0; i < strLength; i++) {
-        singleChar = str.charAt(i).toString();
-        if (singleChar.match(chineseRegex) != null) {
-            newLength += 2;
-        } else {
-            newLength++;
-        }
-        if (newLength > len) {
-            break;
-        }
-        newStr += singleChar;
-    }
 
-    if (hasDot && strLength > len) {
-        newStr += "...";
-    }
-    return newStr;
-}
-function delHtmlTag(str) {
-    return str.replace(/<[^>]+>/g, "");//去掉所有的html标记
-}
-function delBlank(str) {
-    var _tmp = str.replace(/\t/g, "");//把所有/t替换掉
-    _tmp = _tmp.replace(/\r/g, "");//把所有/r替换掉
-    _tmp = _s.trim(_tmp, ' \n');//把前后的换行替换掉
-    _tmp = _s.trim(_tmp, '\n ');//把前后的换行替换掉
-    _tmp = _s.trim(_tmp, '\n');//把前后的换行替换掉
-    return _tmp;
-
-}
 
 module.exports = service;
 module.exports.addArticleToDB = addArticleToDB;

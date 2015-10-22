@@ -18,13 +18,35 @@ service.responseMsg = wechat(wechatConfig,function(req,res,next){
         }else{
             switch(message.MsgType){
                 case 'text':{
-                    if(utils.checkUrl(message.Content)){
-                        addArticleFromWeixin(user_id,message.Content,function(reply){
-                            res.reply(reply);
-                        });
-                    }else{
-                        res.reply("(;´༎ຶД༎ຶ`) 臣妾实在是做不到啊！");
-                    }
+                    //if(message.Content=='readbox'){
+                    //    Article.schema.find({title:{"$ne":""},content:{"$ne":""}})
+                    //        .skip(0)
+                    //        .limit(5)
+                    //        .select("_id title")
+                    //        .sort('{created:-1}')
+                    //        .exec(function(error, result) {
+                    //            if (error) {
+                    //                res.reply("(;´༎ຶД༎ຶ`) 貌似是服务器被外星人攻占了！");
+                    //                return;
+                    //            }
+                    //            var reply = {type:"news"};
+                    //            _.each(result, function (item) {
+                    //                if (item.title.length > 20) {
+                    //                    item.title = utils.subString(item.title, 20, true);
+                    //                }
+                    //
+                    //            });
+                    //        });
+                    //}else{
+                        if(utils.checkUrl(message.Content)){
+                            addArticleFromWeixin(user_id,message.Content,function(reply){
+                                res.reply(reply);
+                            });
+                        }else{
+                            res.reply("(;´༎ຶД༎ຶ`) 臣妾实在是做不到啊！");
+                        }
+                    //}
+
                     break;
                 }
                 case 'link':{

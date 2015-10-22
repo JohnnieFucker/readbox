@@ -2,8 +2,10 @@ var http = require('http'),
     fs = require('fs'),
     moment = require('moment'),
     Promise = require('bluebird'),
-    crypto = require('crypto')
+    crypto = require('crypto');
 
+var _ = require('underscore');
+var _s = require('underscore.string');
 var utils = {};
 
 global.log = function (m) {
@@ -36,6 +38,43 @@ utils.checkUrl = function (str) {
         str = str.replace("localhost", "127.0.0.1");
     }
     return objExp.test(str);
+
+};
+
+utils.subString=function(str, len, hasDot) {
+    var newLength = 0;
+    var newStr = "";
+    var chineseRegex = /[^\x00-\xff]/g;
+    var singleChar = "";
+    var strLength = str.replace(chineseRegex, "**").length;
+    for (var i = 0; i < strLength; i++) {
+        singleChar = str.charAt(i).toString();
+        if (singleChar.match(chineseRegex) != null) {
+            newLength += 2;
+        } else {
+            newLength++;
+        }
+        if (newLength > len) {
+            break;
+        }
+        newStr += singleChar;
+    }
+
+    if (hasDot && strLength > len) {
+        newStr += "...";
+    }
+    return newStr;
+};
+utils.delHtmlTag=function(str) {
+    return str.replace(/<[^>]+>/g, "");//去掉所有的html标记
+};
+utils.delBlank=function(str) {
+    var _tmp = str.replace(/\t/g, "");//把所有/t替换掉
+    _tmp = _tmp.replace(/\r/g, "");//把所有/r替换掉
+    _tmp = _s.trim(_tmp, ' \n');//把前后的换行替换掉
+    _tmp = _s.trim(_tmp, '\n ');//把前后的换行替换掉
+    _tmp = _s.trim(_tmp, '\n');//把前后的换行替换掉
+    return _tmp;
 
 };
 
