@@ -16,7 +16,7 @@ controller.read = function(req, res, next){
             res.render('error', { message: '未找到这篇文章' });
         } else {
             if(article){
-                User.schema.findById(result.user_id,function(err,user){
+                User.schema.findById(article.user_id,function(err,user){
                     if(err) {
                         article.user_name = '已删除用户';
                     }else{
