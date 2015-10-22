@@ -6,16 +6,23 @@ var wechatConfig = require(utils.configDir + '/wechatConfig.json');
 
 
 //登录
-service.responseMsg = function(req, res, next){
-    if(req.method=='GET'){
-        res.send(req.params.echostr);
+service.responseMsg = wechat(wechatConfig,function(req,res,next){
+    var message = req.weixin;
+    if(req.session&&req.session.user_id){
+        switch(message.MsgType){
+            case 'text':{
+            }
+            case 'link':{
+            }
+            default :{
+                res.reply("(;´༎ຶД༎ຶ`) 臣妾实在是做不到啊！");
+            }
+        }
+        console.log(message);
     }else{
-        wechat(wechatConfig,function(req,res,next){
-            var message = req.weixin;
-            console.log(message);
-            res.reply(req.params.echostr);
-        });
+        res.reply('_|￣|◉ 陛下请先登录您的账号！<a href="http://www.readbox.in/login?from=wechat">点此登录</a>');
     }
-};
+
+});
 
 module.exports = service;

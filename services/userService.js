@@ -18,6 +18,7 @@ service.login = function(req, res, next){
             pwd = utils.generatePass(pwd);
             if(result.pwd==pwd){
                 delete(result.pwd);
+                req.session.user_id = result._id.toString();
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
                     service.restSuccess(res,result,{jwt:jwt});
                 });
@@ -67,6 +68,7 @@ service.register = function(req, res, next){
                     service.restError(res,-1,'db_error');
                     return;
                 }
+                req.session.user_id = result._id.toString();
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
                     service.restSuccess(res,result,{jwt:jwt});
                 });

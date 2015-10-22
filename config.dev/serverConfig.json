@@ -2,5 +2,5 @@
   "port":8011,
   "jwtSecret": "@#$TYHBVGHJIY^TWEYKJHNBGFDWGHJKUYTWE#$%^&*&^%$#",
   "need_encrypt":false,
-  "whiteList": ["/","/user/login","/user/register","/article/readSquare","/article/getList","/article/read/*","/wechat/responseMsg"]
+  "whiteList": ["/","/login","/user/login","/user/register","/article/readSquare","/article/getList","/article/read/*","/wechat/responseMsg"]
 }

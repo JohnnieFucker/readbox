@@ -1,0 +1,77 @@
+body{
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-text-size-adjust: none;
+}
+input {
+    outline: none;
+    resize: none;
+    vertical-align: middle;
+    -webkit-appearance: none;
+}
+button {
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+input::-ms-reveal {
+    display: none;
+}
+
+.loginContainer{
+    height: 350px;
+    left: 0;
+    margin: -180px auto 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 300px;
+}
+.loginWrap{
+    width: 600px;
+    position: absolute;
+    left: 0;
+    top:100px;
+}
+.loginBox{
+    width: 300px;
+    float:left;
+    overflow: hidden;
+}
+.loginBox input{
+    margin:15px auto ;
+}
+.loginBox button{
+    width: 100%;
+    outline: none;
+}
+.loginBox button:checked,.loginBox button:active{
+    outline: none;
+
+}
+#error{
+    display: block;
+    text-align: left;
+    margin-top:220px;
+}
+.loginSuccess{
+    font-size: 18px;
+    text-align: center;
+    color: #999;
+    display: none;
+}
+.logo{
+    background: url('../images/logobig.png') center center no-repeat transparent;
+    width: 250px;
+    height: 100px;
+    margin: 0 auto;
+    background-size:contain;
+}
