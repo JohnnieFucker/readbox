@@ -59,7 +59,7 @@ pre {
     font-size: 1em;
     cursor: pointer;
 }
-@media (max-width: 780px) {
+@media (max-width: 900px) {
     body {
         padding: 10px;
         font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
