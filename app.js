@@ -51,9 +51,22 @@ app.use(function(req, res, next){
         console.log(req.url + '  [params]:' + JSON.stringify(req.params)+'[body]:' + JSON.stringify(req.body));
     }
     var whiteList = sysConfig.serverConfig.whiteList;
-    for(var e of whiteList){
-        if(req.url === e){
-            return next();
+    for(var item of whiteList){
+        var urlArr = req.path.split('/');
+        var itemArr = item.split('/');
+        if(urlArr.length==itemArr.length){
+            var isMate = true;
+            for(var i=0;i<urlArr.length;i++){
+                if(itemArr[i]==='*'||urlArr[i]===itemArr[i]){
+
+                }else{
+                    isMate= false;
+                    break;
+                }
+            }
+            if(isMate){
+                return next();
+            }
         }
     }
     jwtHandler.checkJWT(req, function(isAuth){
