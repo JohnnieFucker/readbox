@@ -18,7 +18,7 @@ service.responseMsg = wechat(wechatConfig,function(req,res,next){
         }else{
             switch(message.MsgType){
                 case 'text':{
-                    if(utils.checkUrl(message)){
+                    if(utils.checkUrl(message.Content)){
                         addArticleFromWeixin(user_id,message.Content,function(reply){
                             res.reply(reply);
                         });
