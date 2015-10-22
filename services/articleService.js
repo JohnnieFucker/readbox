@@ -90,7 +90,6 @@ service.getList = function (req, res, next) {
     var limit = 50;
     var skip = 50 * page;
     Article.schema.find({title:{"$ne":""},content:{"$ne":""}})
-        .select("_id title")
         .skip(skip)
         .limit(limit)
         .sort('{created:-1}')
