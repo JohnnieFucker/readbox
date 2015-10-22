@@ -26,7 +26,7 @@ services.push({
 services.push({
     type:'get',
     url:'/createMarkdown',
-    handler:controller.createMarkdown
+    handler:handler.createMarkdown
 });
 
 services.push({
