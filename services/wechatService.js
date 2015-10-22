@@ -65,7 +65,7 @@ function addArticleFromWeixin(user_id,url,next){
                                 next("(;´༎ຶД༎ຶ`) 臣才疏学浅，无法解析这篇网页！");
                                 return;
                             }
-                            next("(＝^ω^＝) 陛下，三军列队完毕，请您检阅！/n <a href='http://www.readbox.in/article/read/"+articleId+"'>点此检阅</a>");
+                            next("(＝^ω^＝) 陛下，三军列队完毕，请您检阅! <a href='http://www.readbox.in/article/read/"+articleId+"'>点此检阅</a>");
                         });
                     });
                 }
