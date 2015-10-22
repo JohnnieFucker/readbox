@@ -19,8 +19,14 @@ services.push({
 
 services.push({
     type:'get',
+    url:'/getList',
+    handler:handler.getList
+});
+
+services.push({
+    type:'get',
     url:'/createMarkdown',
-    handler:handler.createMarkdown
+    handler:controller.createMarkdown
 });
 
 services.push({

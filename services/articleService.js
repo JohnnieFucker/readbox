@@ -25,20 +25,20 @@ service.add = function (req, res, next) {
                 if (result) {
                     UserArticle.insertIfNoExist(user_id, result._id, function (err) {
                         if (err) {
-                            service.restError(res, next, -1, err);
+                            service.restError(res, -1, err);
                             return;
                         }
-                        service.restSuccess(res, next);
+                        service.restSuccess(res);
                     });
                 } else {
                     readability(url, function (err, article) {
                         addArticleToDB(article, url, url_md5, user_id, function (err) {
                             article.close();
                             if (err) {
-                                service.restError(res, next, -1, err);
+                                service.restError(res, -1, err);
                                 return;
                             }
-                            service.restSuccess(res, next);
+                            service.restSuccess(res);
                         });
                     });
                 }
@@ -52,10 +52,10 @@ service.del = function (req, res, next) {
     var article_id = req.body.article_id;
     UserArticle.del(user_id, article_id, function (err) {
         if (err) {
-            service.restError(res, next, -1, err);
+            service.restError(res, -1, err);
             return;
         }
-        service.restSuccess(res, next);
+        service.restSuccess(res);
     });
 };
 
@@ -85,14 +85,33 @@ service.createMarkdown = function (req, res, next) {
 
 //获取readList
 service.getList = function (req, res, next) {
-    //var redis = this.redis;
-    //var time_stamp = req.params.time_stamp;
-    //var articleIds = [];
-    //if (time_stamp == 0) {
-    //    redis.ZRANGE()
-    //}
-    //
-    //getList(articleIds,res,next);
+    var page = req.params.page?req.params.page:1;
+    page --;
+    var limit = 50;
+    var skip = 50 * page;
+    Article.schema.find({title:{"$ne":""},content:{"$ne":""}})
+        .select("_id title")
+        .skip(skip)
+        .limit(limit)
+        .sort('{created:-1}')
+        .exec(function(error, result) {
+            if (error) {
+                service.restError(res, next, -1, 'db_error');
+                return;
+            }
+            _.each(result, function (item) {
+                if (item.title.length > 30) {
+                    item.title = subString(item.title, 30, true);
+                }
+                item.content = delHtmlTag(item.content);
+                item.content = item.content.substr(0, 300);
+                item.content = delBlank(item.content);
+                if (item.content.length > 100) {
+                    item.content = subString(item.content, 100, true);
+                }
+            });
+            service.restSuccess(res,result);
+        });
 };
 
 function getList(articleIds,res,next){
@@ -115,7 +134,7 @@ function getList(articleIds,res,next){
                     item.content = subString(item.content, 100, true);
                 }
             });
-            service.restSuccess(res, next,result);
+            service.restSuccess(res,result);
         });
 }
 
