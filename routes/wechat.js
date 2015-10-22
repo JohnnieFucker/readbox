@@ -11,6 +11,13 @@ services.push({
     handler:handler.responseMsg
 });
 
+//响应微信公众号消息
+services.push({
+    type:'post',
+    url:'/responseMsg',
+    handler:handler.responseMsg
+});
+
 class Router extends BaseRouter{
     constructor(server,name,config) {
         super(server,name,config);

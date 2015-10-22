@@ -7,12 +7,15 @@ var wechatConfig = require(utils.configDir + '/wechatConfig.json');
 
 //登录
 service.responseMsg = function(req, res, next){
-    console.log(wechatConfig);
-   wechat(wechatConfig,function(req,res,next){
-       var message = req.weixin;
-       console.log(message);
-       res.reply('hehe');
-   });
+    if(req.method=='GET'){
+        res.send(req.params.echostr);
+    }else{
+        wechat(wechatConfig,function(req,res,next){
+            var message = req.weixin;
+            console.log(message);
+            res.reply(req.params.echostr);
+        });
+    }
 };
 
 module.exports = service;
