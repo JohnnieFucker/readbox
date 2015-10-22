@@ -4,7 +4,7 @@ var handler = require('../controllers/indexController.js');
 var services = [];
 //登录接口
 services.push({
-    type:'post',
+    type:'get',
     url:'/',
     handler:handler.index
 });
