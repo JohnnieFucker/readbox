@@ -5,7 +5,7 @@ var handler = require('../services/wechatService.js');
 var services = [];
 //登录接口
 services.push({
-    type:'post',
+    type:'get',
     url:'/responseMsg',
     handler:handler.responseMsg
 });
