@@ -10,10 +10,10 @@
 <div id="msgBox"></div>
 <div class="contentBox">
     <h4><%=article.title %></h4>
-    <a href="<%=article.url %>" target="_blank">原网页</a>采集于<%=article.created%>
+    <a href="<%=article.url %>" target="_blank">原网页</a>由 <%=article.user_name%> 采集于<%=article.created%>
     <a href="javascript: void((function() {var element = document.createElement('script');element.id = 'outfox_seed_js';element.charset = 'utf-8',element.setAttribute('src', 'http://fanyi.youdao.com/web2/seed.js?' + Date.parse(new Date()));document.body.appendChild(element);})());">翻译</a>
-    <a class="btnDel" href="/handle/createMarkdown/<%=article._id %>" target="_blank">MarkDown</a>
-    <button class="btnDel" onclick="delArticle('<%=article._id %>');">删除</button>
+    <a class="btnDel" href="/article/createMarkdown/<%=article._id %>" target="_blank">MarkDown</a>
+    <button class="btnDel" onclick="delArticle('<%=article._id %>');" style="display:none;">删除</button>
    <%-article.content%>
 </div>
 </body>

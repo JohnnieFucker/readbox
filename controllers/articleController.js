@@ -1,6 +1,7 @@
 var BaseController = require('../libs/baseController.js');
 var Article = require('../models/article.js');
 var utils =  require('../libs/utils.js');
+var User = require('../models/user.js');
 
 var controller = new BaseController();
 
@@ -10,6 +11,25 @@ controller.list = function(req, res, next){
 };
 //展示
 controller.read = function(req, res, next){
+    Article.schema.findById(req.params.articleId,function(error, article){
+        if(error) {
+            res.render('error', { message: '未找到这篇文章' });
+        } else {
+            if(article){
+                User.schema.findById(result.user_id,function(err,user){
+                    if(err) {
+                        article.user_name = '已删除用户';
+                    }else{
+                        article.user_name = user.nickname;
+                    }
+                    res.render('read/article.ejs',{article:article});
+
+                });
+                return;
+            }
+            res.render('error', { message: '未找到这篇文章' });
+        }
+    });
 };
 
 //广场
