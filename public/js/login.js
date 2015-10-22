@@ -52,7 +52,7 @@ function loginSuccess(){
      $('.loginSuccess').show();
      var from  = getURLParameter('from');
      setTimeout(function(){
-         if(from=='wechat'){
+         if(from&&from=='wechat'){
             window.close();
          }else{
             window.location.href ='/';
@@ -94,11 +94,16 @@ $(document).ready(function(){
             $('#error').html('need password!').show();
             return;
         }
+        var data = {loginName:loginname,pwd:pwd};
+        var wxuid = getURLParameter('wxuid');
+        if(wxuid&&wxuid!=''&&wxuid!='null'){
+            data.wxUid = wxuid;
+        }
         $('#error').html('').hide();
         $.ajax({
             type: "POST",
             url: '/user/login',
-            data: {loginName:loginname,pwd:pwd},
+            data: data,
             dataType: 'json',
             success: function (res) {
                 if(res.result=='TRUE'){
@@ -136,11 +141,16 @@ $(document).ready(function(){
             return;
         }
 
+        var data = {loginName:loginname,pwd:pwd,nickname:nickname};
+        var wxuid = getURLParameter('wxuid');
+        if(wxuid&&wxuid!=''&&wxuid!='null'){
+            data.wxUid = wxuid;
+        }
         $('#error').html('').hide();
         $.ajax({
             type: "POST",
             url:'/user/register',
-            data: {loginName:loginname,pwd:pwd,nickname:nickname},
+            data:data ,
             dataType: 'json',
             success: function (res) {
                 if(res.result=='TRUE'){

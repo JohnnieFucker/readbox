@@ -11,7 +11,7 @@ service.responseMsg = wechat(wechatConfig,function(req,res,next){
     var wx_uid = message.FromUserName;
     service.redis.get('wxuid:'+wx_uid,function(error,user_id){
         if(error||!user_id){
-            res.reply('_|￣|◉ 陛下请先登录您的账号！<a href="http://www.readbox.in/login?from=wechat">点此登录</a>');
+            res.reply('_|￣|◉ 陛下请先登录您的账号！<a href="http://www.readbox.in/login?from=wechat&wxuid='+wx_uid+'">点此登录</a>');
         }else{
             console.log(user_id);
             console.log(message);
