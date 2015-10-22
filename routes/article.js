@@ -29,6 +29,12 @@ services.push({
     handler:controller.readSquare
 });
 
+services.push({
+    type:'get',
+    url:'/read/:articleId',
+    handler:controller.read
+});
+
 class Router extends BaseRouter{
     constructor(server,name,config) {
         super(server,name,config);
