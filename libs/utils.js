@@ -30,7 +30,7 @@ utils.checkPhone = function (phone) {
 };
 utils.checkUrl = function (str) {
     //在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
-    var Expression = /http(s)?:////([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
     var objExp = new RegExp(Expression);
     if (str.indexOf("localhost")) {
         str = str.replace("localhost", "127.0.0.1");
