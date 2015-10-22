@@ -9,7 +9,7 @@ var wechatConfig = require(utils.configDir + '/wechatConfig.json');
 service.responseMsg = wechat(wechatConfig,function(req,res,next){
     var message = req.weixin;
     var wx_uid = message.FromUserName;
-    this.redis.get('wxuid:'+wx_uid,function(error,user_id){
+    service.redis.get('wxuid:'+wx_uid,function(error,user_id){
         if(error||!user_id){
             res.reply('_|￣|◉ 陛下请先登录您的账号！<a href="http://www.readbox.in/login?from=wechat">点此登录</a>');
         }else{

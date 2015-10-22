@@ -21,7 +21,7 @@ service.login = function(req, res, next){
                 delete(result.pwd);
                 req.session.user_id = result._id.toString();
                 if(wxUid){
-                   this.redis.set('wxuid:'+wxUid,result._id.toString(),function(e,r){});
+                    service.redis.set('wxuid:'+wxUid,result._id.toString(),function(e,r){});
                 }
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
                     service.restSuccess(res,result,{jwt:jwt});
@@ -75,7 +75,7 @@ service.register = function(req, res, next){
                     return;
                 }
                 if(wxUid){
-                    this.redis.set('wxuid:'+wxUid,result._id.toString(),function(e,r){});
+                    service.redis.set('wxuid:'+wxUid,result._id.toString(),function(e,r){});
                 }
                 req.session.user_id = result._id.toString();
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
