@@ -3,7 +3,8 @@ var BaseRouter = require('../libs/baseRoute');
 var handler = require('../services/wechatService.js');
 
 var services = [];
-//登录接口
+
+//响应微信公众号消息
 services.push({
     type:'get',
     url:'/responseMsg',
