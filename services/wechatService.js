@@ -7,6 +7,7 @@ var Article = require('../models/article.js');
 var UserArticle = require('../models/userArticle.js');
 var articleService = require('./articleService.js');
 var readability = require('node-readability');
+var _ = require('underscore');
 
 //登录
 service.responseMsg = wechat(wechatConfig,function(req,res,next){

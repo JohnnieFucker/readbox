@@ -2,7 +2,7 @@ var BaseService = require('../libs/baseService.js');
 var Article = require('../models/article.js');
 var UserArticle = require('../models/userArticle.js');
 var utils = require('../libs/utils.js');
-
+var _ = require('underscore');
 var readability = require('node-readability');
 var moment = require('moment');
 var toMarkdown = require('to-markdown').toMarkdown;
