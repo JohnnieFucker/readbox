@@ -9,6 +9,7 @@ var service = new BaseService();
 service.login = function(req, res, next){
     var loginName = req.body.loginName;
     var pwd = req.body.pwd;
+    var wxUid = req.body.wxUid;
     User.schema.findOne({ "$or":[{phone:loginName},{email:loginName}]}).exec(function (err, result) {
         if (err) {
             return service.restError(res,-1,'db_error');
@@ -19,9 +20,13 @@ service.login = function(req, res, next){
             if(result.pwd==pwd){
                 delete(result.pwd);
                 req.session.user_id = result._id.toString();
+                if(wxUid){
+                   this.redis.set('wxuid:'+wxUid,result._id.toString(),function(e,r){});
+                }
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
                     service.restSuccess(res,result,{jwt:jwt});
                 });
+
             }
         }else{
             service.restError(res,-1,'db_error');
@@ -36,6 +41,7 @@ service.register = function(req, res, next){
     var nickName = req.body.nickname;
     pwd = utils.base64_decode(pwd);
     pwd = utils.generatePass(pwd);
+    var wxUid = req.body.wxUid;
     User.schema.findOne({ "$or":[{phone:loginName},{email:loginName},{nickname:nickName}]}).exec(function (err, result) {
         if (err) {
             return service.restError(res,-1,'db_error');
@@ -67,6 +73,9 @@ service.register = function(req, res, next){
                     //console.log(err);
                     service.restError(res,-1,'db_error');
                     return;
+                }
+                if(wxUid){
+                    this.redis.set('wxuid:'+wxUid,result._id.toString(),function(e,r){});
                 }
                 req.session.user_id = result._id.toString();
                 jwtHandler.getJWT(result._id.toString(),function(jwt){
