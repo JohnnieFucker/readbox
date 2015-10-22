@@ -60,6 +60,21 @@ function loginSuccess(){
      },1500);
 
 }
+
+if (typeof WeixinJSBridge == "undefined") {
+    if (document.addEventListener) {
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    } else if (document.attachEvent) {
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+} else {
+    onBridgeReady();
+}
+function onBridgeReady() {
+    WeixinJSBridge.call('hideOptionMenu');
+    WeixinJSBridge.call('hideToolbar');
+}
 $(document).ready(function(){
     $('#btnGotoRegister').click(function(){
         $('.loginWrap').animate({left:'-300px'});
