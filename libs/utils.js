@@ -10,27 +10,37 @@ global.log = function (m) {
     console.log(m);
 };
 global.warn = function (m) {
-    if(typeof m === 'string'){
+    if (typeof m === 'string') {
         return console.warn(m);
     }
     console.warn(m);
 };
 global.error = function (m) {
-    if(typeof m === 'string'){
+    if (typeof m === 'string') {
         return console.error(m);
     }
     console.error(m);
 };
 
-utils.checkEmail=function(email) {
+utils.checkEmail = function (email) {
     return email.match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)
 };
-utils.checkPhone= function (phone) {
+utils.checkPhone = function (phone) {
     return phone.match(/^1[3|4|5|8|7][0-9]\d{4,8}$/);
 };
+utils.checkUrl = function (str) {
+    //在JavaScript中，正则表达式只能使用"/"开头和结束，不能使用双引号
+    var Expression = /http(s)?:////([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+    var objExp = new RegExp(Expression);
+    if (str.indexOf("localhost")) {
+        str = str.replace("localhost", "127.0.0.1");
+    }
+    return objExp.test(str);
 
-utils.isArray = function(o) {
-  return Object.prototype.toString.call(o) === '[object Array]'; 
+};
+
+utils.isArray = function (o) {
+    return Object.prototype.toString.call(o) === '[object Array]';
 };
 
 /**
@@ -86,9 +96,9 @@ utils.env = (function () {
 })();
 
 utils.configDir = (function () {
-    var path = process.cwd()+'/config.dev';
+    var path = process.cwd() + '/config.dev';
     if (utils.env == 'production') {
-        path = process.cwd()+'/config.production';
+        path = process.cwd() + '/config.production';
     }
     return path;
 })();

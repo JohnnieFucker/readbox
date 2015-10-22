@@ -158,7 +158,7 @@ function addArticleToDB(article, url, url_md5, user_id, next) {
                     next(err);
                     return;
                 }
-                next(false);
+                next(false,data._id.toString());
             });
         });
     } else {
@@ -204,3 +204,4 @@ function delBlank(str) {
 }
 
 module.exports = service;
+module.exports.addArticleToDB = addArticleToDB;
