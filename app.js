@@ -54,8 +54,6 @@ app.use(function(req, res, next){
     for(var item of whiteList){
         var urlArr = req.path.split('/');
         var itemArr = item.split('/');
-        console.log(urlArr);
-        console.log(itemArr);
         if(urlArr.length==itemArr.length){
             var isMate = true;
             for(var i=0;i<urlArr.length;i++){
@@ -67,7 +65,6 @@ app.use(function(req, res, next){
                 }
             }
             if(isMate){
-                console.log('mate');
                 return next();
             }
         }
