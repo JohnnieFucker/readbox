@@ -1,6 +1,5 @@
 {
-  "appId":"1",
-  "appSecret":"2",
   "token":"3",
+  "appId":"1",
   "encodingAESKey":"4"
 }

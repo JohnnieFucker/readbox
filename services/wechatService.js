@@ -7,6 +7,7 @@ var wechatConfig = require(utils.configDir + '/wechatConfig.json');
 
 //登录
 service.responseMsg = function(req, res, next){
+    console.log(wechatConfig);
    wechat(wechatConfig,function(req,res,next){
        var message = req.weixin;
        console.log(message);
