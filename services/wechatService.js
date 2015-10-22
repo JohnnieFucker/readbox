@@ -55,7 +55,7 @@ function addArticleFromWeixin(user_id,url,next){
                             next("(;´༎ຶД༎ຶ`) 貌似是服务器被外星人攻占了！");
                             return;
                         }
-                        next("(＝^ω^＝) 陛下，三军列队完毕，请您检阅！\n <a href='http://www.readbox.in/article/read/"+result._id+"'>点此检阅</a>");
+                        next("(＝^ω^＝) 陛下，三军列队完毕，请您检阅！<a href='http://www.readbox.in/article/read/"+result._id+"'>点此检阅</a>");
                     });
                 } else {
                     readability(url, function (err, article) {
