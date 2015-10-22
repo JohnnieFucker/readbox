@@ -1,7 +1,7 @@
 'use strict';
 var BaseRouter = require('../libs/baseRoute');
 var handler = require('../services/articleService.js');
-
+var controller = require('../controllers/articleController.js');
 var services = [];
 
 //添加
@@ -21,6 +21,12 @@ services.push({
     type:'get',
     url:'/createMarkdown',
     handler:handler.createMarkdown
+});
+
+services.push({
+    type:'get',
+    url:'/readSquare',
+    handler:controller.readSquare
 });
 
 class Router extends BaseRouter{

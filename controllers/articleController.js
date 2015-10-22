@@ -9,7 +9,7 @@ controller.list = function(req, res, next){
 
 };
 //展示
-controller.list = function(req, res, next){
+controller.read = function(req, res, next){
 };
 
 //广场
