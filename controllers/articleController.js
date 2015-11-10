@@ -42,7 +42,7 @@ controller.readSquare = function(req, res, next){
         .select("_id title")
         .skip(skip)
         .limit(limit)
-        .sort('{created:-1}')
+        .sort({created:-1})
         .exec(function(error, result) {
             if (error) {
                 res.render('error', {message: 'server error'});
