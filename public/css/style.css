@@ -59,6 +59,13 @@ pre {
     font-size: 1em;
     cursor: pointer;
 }
+.logo{
+    background: url('../images/logobig.png') center center no-repeat transparent;
+    width: 250px;
+    height: 100px;
+    margin: 0 auto;
+    background-size:contain;
+}
 @media (max-width: 900px) {
     body {
         padding: 10px;
