@@ -6,12 +6,37 @@ var _ = require('underscore');
 var readability = require('node-readability');
 var moment = require('moment');
 var toMarkdown = require('to-markdown').toMarkdown;
-
+var URL = require('url');
 var service = new BaseService();
 
+function getFavIcon(document,urlObj) {
+    var favicon = false;
+    var nodeList = document.getElementsByTagName("link");
+    for (var i = 0; i < nodeList.length; i++) {
+        if ((nodeList[i].getAttribute("rel") == "icon") || (nodeList[i].getAttribute("rel") == "shortcut icon")) {
+            favicon = nodeList[i].getAttribute("href");
+        }
+    }
+    if(favicon){
+        if(favicon.indexOf('http')===0){
+
+        }else{
+            if(favicon.indexOf('/')===0){
+                favicon =urlObj.protocol+'//'+urlObj.hostname+favicon;
+            }else{
+                favicon =urlObj.protocol+'//'+ urlObj.hostname+'/'+favicon;
+            }
+
+        }
+    } else{
+        favicon='';
+    }
+    return favicon;
+}
 //添加文章
 service.add = function (req, res, next) {
     var url = req.body.url;
+    var urlObj = URL.parse(url);
     var user_id = req.session.user_id;
     var url_md5 = utils.md5(url);
     Article.schema.findOne({url_md5: url_md5})
@@ -30,6 +55,8 @@ service.add = function (req, res, next) {
                     });
                 } else {
                     readability(url, function (err, article) {
+                        article.hostname = urlObj.hostname;
+                        article.favico = getFavIcon(article.document,urlObj);
                         addArticleToDB(article, url, url_md5, user_id, function (err) {
                             article.close();
                             if (err) {
@@ -83,15 +110,15 @@ service.createMarkdown = function (req, res, next) {
 
 //获取readList
 service.getList = function (req, res, next) {
-    var page = req.params.page?req.params.page:1;
-    page --;
+    var page = req.params.page ? req.params.page : 1;
+    page--;
     var limit = 50;
     var skip = 50 * page;
-    Article.schema.find({title:{"$ne":""},content:{"$ne":""}})
+    Article.schema.find({title: {"$ne": ""}, content: {"$ne": ""}})
         .skip(skip)
         .limit(limit)
-        .sort({created:-1})
-        .exec(function(error, result) {
+        .sort({created: -1})
+        .exec(function (error, result) {
             if (error) {
                 service.restError(res, next, -1, 'db_error');
                 return;
@@ -107,11 +134,11 @@ service.getList = function (req, res, next) {
                     item.content = utils.subString(item.content, 100, true);
                 }
             });
-            service.restSuccess(res,result);
+            service.restSuccess(res, result);
         });
 };
 
-function getList(articleIds,res,next){
+function getList(articleIds, res, next) {
     Article.schema.find({_id: {"$in": articleIds}})
         .sort({created: -1})
         .select("_id title content created")
@@ -131,7 +158,7 @@ function getList(articleIds,res,next){
                     item.content = utils.subString(item.content, 100, true);
                 }
             });
-            service.restSuccess(res,result);
+            service.restSuccess(res, result);
         });
 }
 
@@ -144,6 +171,8 @@ function addArticleToDB(article, url, url_md5, user_id, next) {
             content: article.content,
             url: url,
             url_md5: url_md5,
+            from_site: article.hostname,
+            site_ico: article.favico,
             created: moment().format('YYYY-MM-DD HH:mm:ss')
         });
         data.save(function (err) {
@@ -156,14 +185,13 @@ function addArticleToDB(article, url, url_md5, user_id, next) {
                     next(err);
                     return;
                 }
-                next(false,data._id.toString());
+                next(false, data._id.toString());
             });
         });
     } else {
         next('readability_error');
     }
 }
-
 
 
 module.exports = service;

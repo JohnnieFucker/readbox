@@ -1,10 +1,10 @@
 body {
-    padding: 50px;
+    padding: 5px 10px;
     font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
     background-color: #f0f0f0;
     color: #302c22;
     font-size: 150%;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 a {

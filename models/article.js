@@ -8,7 +8,9 @@ var ArticleSchema = new Schema({
     content: String,
     url: String,
     url_md5:String,
-    created: String
+    created: String,
+    from_site:String,
+    site_ico:String
 },{versionKey: false});
 
 var Model = {
