@@ -33,7 +33,7 @@ pre {
 }
 
 .contentBox {
-    margin: 30px auto
+    margin: 120px auto 30px;
 }
 
 #msgBox {
@@ -67,6 +67,10 @@ pre {
     height: 100px;
     margin: 0 auto;
     background-size:contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 .liBox{
     background: rgba(255, 255, 255, 0.8);
