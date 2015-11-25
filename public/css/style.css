@@ -67,10 +67,14 @@ pre {
     height: 100px;
     margin: 0 auto;
     background-size:contain;
+}
+.logoWrap{
+    background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat fixed #fff;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    height: 100px;
 }
 .liBox{
     background: rgba(255, 255, 255, 0.8);
