@@ -78,7 +78,7 @@ pre {
 .liBox{
     background: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
-    box-shadow: 2px 3px 5px 1px #aaa;
+    box-shadow: 1px 1px 3px 1px #aaa;
     display: block;
     margin: 15px 0;
     padding: 10px 20px;
