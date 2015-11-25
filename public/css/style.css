@@ -74,6 +74,7 @@ pre {
     display: block;
     margin: 15px 0;
     padding: 10px 20px;
+    box-shadow: 0 0 1px 3px #999;
 }
 .titleBox{
   font-size: 1.5em;
@@ -87,8 +88,9 @@ pre {
    margin-top: 20px;
 }
 .siteIco{
-    width:16px;
-    height: 16px;
+    height: 1em;
+    margin: 0 5px;
+    width: 1em;
 }
 @media (max-width: 900px) {
     body {
