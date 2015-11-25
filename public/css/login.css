@@ -100,6 +100,6 @@ input::-ms-reveal {
         right: 0;
         overflow: auto;
         background: url('../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg') center top no-repeat #fff;
-        background-size: cover;
+        background-size: contain;
     }
 }
