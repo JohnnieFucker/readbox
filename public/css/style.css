@@ -91,7 +91,8 @@ pre {
 
 .titleBox {
     font-size: 1.5em;
-    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
 }
 
