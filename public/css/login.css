@@ -11,7 +11,7 @@ body{
     right: 0;
     overflow: auto;
     background: url('../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg') center top no-repeat #fff;
-    background-size: contain;
+    background-size: cover;
 }
 input {
     outline: none;
@@ -99,7 +99,6 @@ input::-ms-reveal {
         left: 0;
         right: 0;
         overflow: auto;
-        background: url('../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg') center top no-repeat #fff;
-        background-size: cover;
+        background: url('../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg') center center no-repeat #fff;
     }
 }
