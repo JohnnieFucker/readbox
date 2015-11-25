@@ -3,6 +3,7 @@ var Article = require('../models/article.js');
 var utils =  require('../libs/utils.js');
 var User = require('../models/user.js');
 
+var _ = require('underscore');
 var controller = new BaseController();
 
 //个人阅读列表
