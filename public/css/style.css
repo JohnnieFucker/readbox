@@ -32,7 +32,7 @@ pre {
 }
 
 .contentBox {
-    margin: 100px auto 20px;
+    margin: 70px auto 20px;
 }
 
 #msgBox {
@@ -63,7 +63,7 @@ pre {
 .logo{
     background: url('../images/logobig.png') center center no-repeat transparent;
     width: 250px;
-    height: 80px;
+    height: 70px;
     margin: 0 auto;
     background-size:contain;
 }
@@ -73,7 +73,7 @@ pre {
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 70px;
 }
 .liBox{
     background: rgba(255, 255, 255, 0.8);
