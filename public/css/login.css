@@ -36,14 +36,15 @@ input::-ms-reveal {
 }
 
 .loginContainer{
-    height: 350px;
+    height: 450px;
     left: 0;
     margin: -180px auto 0;
     overflow: hidden;
     position: absolute;
     right: 0;
     top: 50%;
-    width: 300px;
+    width: 330px;
+    padding:50px 15px;
 }
 .loginWrap{
     width: 600px;
