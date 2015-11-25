@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 body{
     box-sizing: border-box;
     -webkit-text-size-adjust: none;
@@ -84,6 +87,15 @@ input::-ms-reveal {
 }
 @media screen and (max-width: 2000px){
     body{
+        box-sizing: border-box;
+        -webkit-text-size-adjust: none;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: auto;
+        background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center center no-repeat #fff;
         background-size: contain;
     }
 }
