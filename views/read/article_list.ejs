@@ -2,14 +2,15 @@
 <html>
 <head>
     <title>ReadBox</title>
+    <link rel='stylesheet' href='/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/css/style.css' />
 </head>
 <body>
 <div class="logo"></div>
-<div class="contentBox">
+<div class="contentBox container">
     <ul>
         <%for (var i=0;i<articles.length;i++){%>
-            <li><a href="/article/read/<%=articles[i]._id%>" target="_blank"><%=articles[i].title%></a></li>
+            <li class="col-lg-4"><a href="/article/read/<%=articles[i]._id%>" target="_blank"><%=articles[i].title%></a></li>
         <%}%>
     </ul>
 </div>
