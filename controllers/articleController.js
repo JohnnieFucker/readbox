@@ -52,8 +52,8 @@ controller.readSquare = function(req, res, next){
                 item.content = utils.delHtmlTag(item.content);
                 item.content = item.content.substr(0, 300);
                 item.content = utils.delBlank(item.content);
-                if (item.content.length > 100) {
-                    item.content = utils.subString(item.content, 100, true);
+                if (item.content.length > 200) {
+                    item.content = utils.subString(item.content, 200, true);
                 }
             });
             res.render('read/article_list.ejs', {articles: result});
