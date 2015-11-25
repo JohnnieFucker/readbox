@@ -1,16 +1,13 @@
+*{
+    box-sizing: border-box;
+}
 body {
     padding: 5px 10px;
     font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
     color: #302c22;
     font-size: 150%;
     line-height: 1.6;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    overflow: auto;
-    background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat #fff;
+    background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat fixed #fff;
 }
 a {
     color: #00B7FF
