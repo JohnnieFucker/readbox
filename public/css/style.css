@@ -101,6 +101,11 @@ pre {
     font-size: 1.2em;
     text-indent:2em;
 }
+.summaryBox2{
+    color: #555;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
 
 .memoBox {
     margin-top: 20px;
