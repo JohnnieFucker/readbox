@@ -69,12 +69,12 @@ pre {
     background-size:contain;
 }
 .liBox{
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
+    box-shadow: 2px 3px 5px 1px #aaa;
     display: block;
     margin: 15px 0;
     padding: 10px 20px;
-    box-shadow: 0 0 1px 3px #999;
 }
 .titleBox{
   font-size: 1.5em;
@@ -82,10 +82,11 @@ pre {
     margin-bottom: 20px;
 }
 .summaryBox{
-
+  color: #515151;
 }
 .memoBox{
    margin-top: 20px;
+    color: #999;
 }
 .siteIco{
     height: 1em;
