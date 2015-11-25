@@ -67,7 +67,7 @@ pre {
     height: 100px;
     margin: 0 auto;
     background-size:contain;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
