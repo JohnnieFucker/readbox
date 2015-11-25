@@ -82,3 +82,8 @@ input::-ms-reveal {
     margin: 0 auto;
     background-size:contain;
 }
+@media screen and (max-width: 2000px){
+    body{
+        background-size: contain;
+    }
+}

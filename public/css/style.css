@@ -68,15 +68,15 @@ pre {
     background-size:contain;
 }
 @media (max-width: 900px) {
-    body {
-        padding: 10px;
-        font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
-        background-color: #f0f0f0;
-        color: #302c22;
-        font-size: 120%;
-        line-height: 1.6;
-        word-wrap: break-word;
-    }
+    /*body {*/
+        /*padding: 10px;*/
+        /*font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;*/
+        /*background-color: #f0f0f0;*/
+        /*color: #302c22;*/
+        /*font-size: 120%;*/
+        /*line-height: 1.6;*/
+        /*word-wrap: break-word;*/
+    /*}*/
 
     .btnDel {
         display: none;
@@ -86,5 +86,10 @@ pre {
         width: 90%;
         display: block;
         margin: 0 auto;
+    }
+}
+@media screen and (max-width: 2000px){
+    body{
+        background-size: contain;
     }
 }
