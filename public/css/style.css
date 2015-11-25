@@ -122,9 +122,9 @@ pre {
     body {
         padding: 10px;
         font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
-        background-color: #f0f0f0;
+        background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat fixed #fff;
         color: #302c22;
-        font-size: 120%;
+        font-size: 160%;
         line-height: 1.6;
         word-wrap: break-word;
     }
