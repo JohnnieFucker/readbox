@@ -63,7 +63,7 @@ pre {
 .logo{
     background: url('../images/logobig.png') center center no-repeat transparent;
     width: 250px;
-    height: 100px;
+    height: 80px;
     margin: 0 auto;
     background-size:contain;
 }
@@ -73,7 +73,7 @@ pre {
     top: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    height: 80px;
 }
 .liBox{
     background: rgba(255, 255, 255, 0.8);
