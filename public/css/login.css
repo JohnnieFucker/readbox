@@ -45,13 +45,14 @@ input::-ms-reveal {
     top: 50%;
     width: 300px;
     background: rgba(0,0,0,0.3);
+    padding:50px 0;
     border-radius: 4px;
 }
 .loginWrap{
     width: 600px;
     position: absolute;
     left: 0;
-    top:100px;
+    top:150px;
 }
 .loginBox{
     width: 300px;
