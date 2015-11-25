@@ -2,16 +2,26 @@
 <html>
 <head>
     <title>ReadBox</title>
-    <link rel='stylesheet' href='/css/bootstrap.min.css' />
-    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/css/style.css'/>
 </head>
 <body>
 <div class="logo"></div>
 <div class="contentBox container">
     <ul>
-        <%for (var i=0;i<articles.length;i++){%>
-            <li class="col-lg-4"><a href="/article/read/<%=articles[i]._id%>" target="_blank"><%=articles[i].title%></a></li>
-        <%}%>
+        <% for (var i = 0;i < articles.length;i++){ %>
+        <li class="liBox">
+            <div>
+                <div class="titleBox">
+                    <a href="/article/read/<%= articles[i]._id %>" target="_blank">
+                        <%= articles[i].title %>
+                    </a>
+                </div>
+                <div class="summaryBox"><%= articles[i].title %></div>
+                <div class="memoBox"><%= articles[i].title %>采集于<%= articles[i].title %></div>
+            </div>
+        </li>
+        <% } %>
     </ul>
 </div>
 </body>

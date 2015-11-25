@@ -39,7 +39,6 @@ controller.readSquare = function(req, res, next){
     var limit = 50;
     var skip = 50 * page;
     Article.schema.find({title:{"$ne":""},content:{"$ne":""}})
-        .select("_id title")
         .skip(skip)
         .limit(limit)
         .sort({created:-1})
@@ -48,6 +47,17 @@ controller.readSquare = function(req, res, next){
                 res.render('error', {message: 'server error'});
                 return;
             }
+            _.each(result, function (item) {
+                if (item.title.length > 30) {
+                    item.title = utils.subString(item.title, 30, true);
+                }
+                item.content = utils.delHtmlTag(item.content);
+                item.content = item.content.substr(0, 300);
+                item.content = utils.delBlank(item.content);
+                if (item.content.length > 100) {
+                    item.content = utils.subString(item.content, 100, true);
+                }
+            });
             res.render('read/article_list.ejs', {articles: result});
         });
 };
