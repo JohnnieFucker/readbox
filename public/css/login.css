@@ -43,10 +43,9 @@ input::-ms-reveal {
     position: absolute;
     right: 0;
     top: 50%;
-    width: 330px;
-    padding:50px 15px;
+    width: 300px;
     background: rgba(0,0,0,0.5);
-    border-radius: 3px;
+    border-radius: 4px;
 }
 .loginWrap{
     width: 600px;
@@ -58,6 +57,7 @@ input::-ms-reveal {
     width: 300px;
     float:left;
     overflow: hidden;
+    padding:0 15px;
 }
 .loginBox input{
     margin:15px auto ;
