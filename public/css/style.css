@@ -78,12 +78,13 @@ pre {
 .titleBox{
   font-size: 1.5em;
   border-bottom: 1px solid #999;
+    margin-bottom: 20px;
 }
 .summaryBox{
 
 }
 .memoBox{
-
+   margin-top: 20px;
 }
 .siteIco{
     width:16px;
