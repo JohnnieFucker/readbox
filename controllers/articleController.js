@@ -49,9 +49,6 @@ controller.readSquare = function(req, res, next){
                 return;
             }
             _.each(result, function (item) {
-                if (item.title.length > 30) {
-                    item.title = utils.subString(item.title, 30, true);
-                }
                 item.content = utils.delHtmlTag(item.content);
                 item.content = item.content.substr(0, 300);
                 item.content = utils.delBlank(item.content);

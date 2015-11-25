@@ -17,8 +17,8 @@
                         <%= articles[i].title %>
                     </a>
                 </div>
-                <div class="summaryBox"><%= articles[i].title %></div>
-                <div class="memoBox"><%= articles[i].title %>采集于<%= articles[i].title %></div>
+                <div class="summaryBox"><%= articles[i].content %></div>
+                <div class="memoBox"><%=articles[i].created%>采集于<%if(articles[i].site_ico&&articles[i].site_ico!=''){%><img class="siteIco" src="<%=articles[i].site_ico%>"/><%}%><%= articles[i].from_site?articles[i].from_site:"网络" %></div>
             </div>
         </li>
         <% } %>

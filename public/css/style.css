@@ -69,7 +69,11 @@ pre {
     background-size:contain;
 }
 .liBox{
-
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    display: block;
+    margin: 15px 0;
+    padding: 10px 20px;
 }
 .titleBox{
 
