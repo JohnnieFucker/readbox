@@ -76,13 +76,18 @@ pre {
     padding: 10px 20px;
 }
 .titleBox{
-
+  font-size: 1.5em;
+  border-bottom: 1px solid #999;
 }
 .summaryBox{
 
 }
 .memoBox{
 
+}
+.siteIco{
+    width:16px;
+    height: 16px;
 }
 @media (max-width: 900px) {
     body {
