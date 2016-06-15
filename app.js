@@ -71,9 +71,7 @@ app.use(function(req, res, next){
     }
     jwtHandler.checkJWT(req, function(isAuth){
         if(!isAuth){
-            var err = new Error('No Auth');
-            err.status = 500;
-            next(err);
+            res.redirect('/login');
             return;
         }
         next();
