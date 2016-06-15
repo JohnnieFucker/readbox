@@ -25,7 +25,7 @@ services.push({
 
 services.push({
     type:'get',
-    url:'/createMarkdown',
+    url:'/createMarkdown/:articleId',
     handler:handler.createMarkdown
 });
 

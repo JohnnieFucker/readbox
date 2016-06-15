@@ -86,7 +86,7 @@ service.del = function (req, res, next) {
 
 //获取文章markdown文件
 service.createMarkdown = function (req, res, next) {
-    var article_id = req.params.article_id;
+    var article_id = req.params.articleId;
     Article.schema.findById(article_id, function (error, result) {
         if (error) {
             res.send('操作失败');
