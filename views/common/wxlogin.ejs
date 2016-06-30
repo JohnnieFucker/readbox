@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReadBox</title>
+    <link rel='stylesheet' href='/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/css/login.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=300, initial-scale=1.0,user-scalable=no" name="viewport">
+    <meta name="MobileOptimized" content="240"/>
+    <meta name="apple-touch-fullscreen" content="YES" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="Expires" content="0"/>
+    <script src="/js/jquery-2.1.3.min.js"></script>
+    <script src="/js/qrcode.min.js"></script>
+</head>
+<body>
+<div class="text-center" id="qrcode">
+</div>
+<script>
+    var qrCode = 'https://login.weixin.qq.com/l/<%=uuid%>';
+    $('#qrCode').innerHTML = '';
+    new QRCode(document.getElementById('qrcode'), qrCode);
+</script>
+</body>
+</html>

@@ -16,6 +16,13 @@ services.push({
     handler:handler.login
 });
 
+//wxbot
+services.push({
+    type:'get',
+    url:'/wxbot',
+    handler:handler.wxbot
+});
+
 class Router extends BaseRouter{
     constructor(server,name,config) {
         super(server,name,config);

@@ -36,6 +36,7 @@
     "to-markdown": "0.0.3",
     "underscore": "^1.8.3",
     "underscore.string": "^3.2.2",
-    "wechat": "^2.0.2"
+    "wechat": "^2.0.2",
+    "wechat4u": "^0.3.3"
   }
 }
