@@ -1,3 +1,4 @@
+'use strict';
 var BaseController = require('../libs/baseController.js');
 var controller = new BaseController();
 const wechat4u = require('wechat4u');
