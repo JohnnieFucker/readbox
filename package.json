@@ -28,7 +28,7 @@
     "express-session": "^1.11.3",
     "jwt-simple": "^0.3.1",
     "moment": "^2.9.0",
-    "mongoose": "^4.1.11",
+    "mongoose": "^4.5.3",
     "morgan": "^1.6.1",
     "node-readability": "^2.1.0",
     "redis": "^2.2.5",
