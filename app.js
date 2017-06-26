@@ -47,7 +47,7 @@ var jwtHandler = require('./libs/jwtHandler.js');
 
 //鉴权拦截
 app.use(function(req, res, next){
-    if(utils.env != 'production'){
+    if(loader.env != 'production'){
         console.log(req.url + '  [params]:' + JSON.stringify(req.params)+'[body]:' + JSON.stringify(req.body));
     }
     var whiteList = sysConfig.whiteList;
