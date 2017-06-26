@@ -1,8 +1,9 @@
 var BaseService = require('../libs/baseService.js');
 var utils =  require('../libs/utils.js');
+var loader = require('../libs/loadConfig');
 var wechat = require('wechat');
 var service = new BaseService();
-var wechatConfig = require(utils.configDir + '/wechatConfig.json');
+var wechatConfig = require(loader.configFile)[loader.projectName].wechat;
 var Article = require('../models/article.js');
 var UserArticle = require('../models/userArticle.js');
 var articleService = require('./articleService.js');

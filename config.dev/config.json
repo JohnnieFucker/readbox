@@ -1,0 +1,45 @@
+{
+  "readbox": {
+    "port": 8011,
+    "jwtSecret": "@#$TYHBVGHJIY^TWEYKJHNBGFDWGHJKUYTWE#$%^&*&^%$#",
+    "need_encrypt": false,
+    "whiteList": [
+      "/",
+      "/login",
+      "/user/login",
+      "/user/register",
+      "/article/readSquare",
+      "/article/getList",
+      "/article/read/*",
+      "/article/createMarkdown/*",
+      "/wechat/responseMsg",
+      "/wxbot"
+    ],
+    "sessionConfig":{
+      "secret": "abcdefg",
+      "maxAge": 17280000000
+    },
+    "mongodb":{
+      "host":"localhost",
+      "port":"27017",
+      "db":"readbox",
+      "user":"readbox_admin",
+      "pwd":"readbox"
+    },
+    "redis":{
+      "jwtServer":{
+        "host":"127.0.0.1",
+        "port":"6379"
+      },
+      "dataServer":{
+        "host":"127.0.0.1",
+        "port":"6379"
+      }
+    },
+    "wechat":{
+      "token":"readbox",
+      "appid":"1",
+      "encodingAESKey":"2"
+    }
+  }
+}

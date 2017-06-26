@@ -2,8 +2,9 @@ var jwt = require('jwt-simple');
 var redis = require('./redis.js').jwtRedisClient;
 var crypto = require('crypto');
 var utils = require('./utils.js');
+var loader = require('./loadConfig');
 
-var jwtSecret = require(utils.configDir + '/serverConfig.json').jwtSecret;
+var jwtSecret = require(loader.configFile)[loader.projectName].jwtSecret;
 
 var jwtHandler = {
     checkJWT: function (req, cb) {

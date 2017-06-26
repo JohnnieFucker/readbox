@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "readbox",
+      "script": "./bin/readbox",
+      "watch": false,
+      "error_file": "/data/logs/nodes/readbox.err.log",
+      "out_file": "/data/logs/nodes/readbox.out.log",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}

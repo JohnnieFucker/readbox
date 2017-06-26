@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var utils = require('./libs/utils.js');
+var loader = require('./libs/loadConfig.js');
 var compression = require('compression');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
@@ -28,13 +28,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 var importer = require('./libs/importer')();
-var sysConfig = importer(utils.configDir);
+var sysConfig = require(loader.configFile)[loader.projectName];
 
 app.use(session({
     secret: sysConfig.sessionConfig.secret,
     store: new RedisStore({
-        host: sysConfig.redisConfig.jwtServer.host,
-        port: sysConfig.redisConfig.jwtServer.port,
+        host: sysConfig.redis.jwtServer.host,
+        port: sysConfig.redis.jwtServer.port,
         ttl: sysConfig.sessionConfig.maxAge
     }),
     cookie: {maxAge: sysConfig.sessionConfig.maxAge,secure: false},
@@ -50,7 +50,7 @@ app.use(function(req, res, next){
     if(utils.env != 'production'){
         console.log(req.url + '  [params]:' + JSON.stringify(req.params)+'[body]:' + JSON.stringify(req.body));
     }
-    var whiteList = sysConfig.serverConfig.whiteList;
+    var whiteList = sysConfig.whiteList;
     for(var item of whiteList){
         var urlArr = req.path.split('/');
         var itemArr = item.split('/');

@@ -1,9 +1,0 @@
-{
-  "dataServer":{
-    "host":"localhost",
-    "port":"27017",
-    "db":"readbox",
-    "user":"readbox_admin",
-    "pwd":"readbox"
-  }
-}

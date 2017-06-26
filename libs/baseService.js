@@ -2,9 +2,10 @@
 var mongodb = require('./mongodb.js');
 var redis = require('./redis.js').redisClient;
 var utils = require('./utils.js');
+var loader = require('./loadConfig');
 var RESULT_TRUE = 'TRUE';
 var RESULT_FALSE = 'FALSE';
-var need_encrypt = require(utils.configDir + '/serverConfig.json').need_encrypt;
+var need_encrypt = require(loader.configFile)[loader.projectName].need_encrypt;
 
 class BaseService{
     constructor() {
