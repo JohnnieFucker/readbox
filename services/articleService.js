@@ -8,7 +8,6 @@ var moment = require('moment');
 var toMarkdown = require('to-markdown').toMarkdown;
 var URL = require('url');
 var service = new BaseService();
-var request = require('request');
 
 function getFavIcon(document, urlObj) {
     var favicon = false;
