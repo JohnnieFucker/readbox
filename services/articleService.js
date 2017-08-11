@@ -8,8 +8,9 @@ var moment = require('moment');
 var toMarkdown = require('to-markdown').toMarkdown;
 var URL = require('url');
 var service = new BaseService();
+var request = require('request');
 
-function getFavIcon(document,urlObj) {
+function getFavIcon(document, urlObj) {
     var favicon = false;
     var nodeList = document.getElementsByTagName("link");
     for (var i = 0; i < nodeList.length; i++) {
@@ -17,22 +18,23 @@ function getFavIcon(document,urlObj) {
             favicon = nodeList[i].getAttribute("href");
         }
     }
-    if(favicon){
-        if(favicon.indexOf('http')===0){
+    if (favicon) {
+        if (favicon.indexOf('http') === 0) {
 
-        }else{
-            if(favicon.indexOf('/')===0){
-                favicon =urlObj.protocol+'//'+urlObj.hostname+favicon;
-            }else{
-                favicon =urlObj.protocol+'//'+ urlObj.hostname+'/'+favicon;
+        } else {
+            if (favicon.indexOf('/') === 0) {
+                favicon = urlObj.protocol + '//' + urlObj.hostname + favicon;
+            } else {
+                favicon = urlObj.protocol + '//' + urlObj.hostname + '/' + favicon;
             }
 
         }
-    } else{
-        favicon='';
+    } else {
+        favicon = '';
     }
     return favicon;
 }
+
 //添加文章
 service.add = function (req, res, next) {
     var url = req.body.url;
@@ -54,9 +56,19 @@ service.add = function (req, res, next) {
                         service.restSuccess(res);
                     });
                 } else {
-                    readability(url, function (err, article) {
+                    readability(url, {
+                        headers: {
+                            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                            'Accept-Encoding': 'gzip, deflate',
+                            'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh-TW;q=0.4',
+                            'Cache-Control': 'max-age=0',
+                            'Connection': 'keep-alive',
+                            'Referer': urlObj.hostname,
+                            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+                        }
+                    }, function (err, article) {
                         article.hostname = urlObj.hostname;
-                        article.favico = getFavIcon(article.document,urlObj);
+                        article.favico = getFavIcon(article.document, urlObj);
                         addArticleToDB(article, url, url_md5, user_id, function (err) {
                             article.close();
                             if (err) {
