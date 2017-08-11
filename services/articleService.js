@@ -71,6 +71,7 @@ service.add = function (req, res, next) {
                         addArticleToDB(article, url, url_md5, user_id, function (err) {
                             article.close();
                             if (err) {
+                                console.log(err);
                                 service.restError(res, -1, err);
                                 return;
                             }
