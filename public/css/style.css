@@ -110,6 +110,9 @@ pre {
     display: block;
     max-width: 90%;
 }
+.summaryBox2 p{
+    text-indent:2em;
+}
 
 .memoBox {
     margin-top: 20px;
