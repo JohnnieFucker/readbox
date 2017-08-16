@@ -58,7 +58,6 @@ service.add = function (req, res, next) {
                     readability(url, {
                         headers: {
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-                            'Accept-Encoding': 'deflate',
                             'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh-TW;q=0.4',
                             'Cache-Control': 'max-age=0',
                             'Connection': 'keep-alive',
