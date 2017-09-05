@@ -40,6 +40,11 @@
       "token":"readbox",
       "appid":"1",
       "encodingAESKey":"2"
+    },
+    "baiduYuyin":{
+      "appId":"1",
+      "apiKey":"1",
+      "secret":"1"
     }
   }
 }

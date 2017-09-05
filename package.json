@@ -9,7 +9,7 @@
   "author": {
     "email": "shine@vip.qq.com",
     "github": "https://github.com/JohnnieFucker",
-    "weibo": "JohnnieFucker"
+    "name": "JohnnieFucker"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "morgan": "^1.6.1",
     "node-readability": "^3.0.0",
     "redis": "^2.2.5",
+    "request": "^2.81.0",
     "serve-favicon": "~2.2.0",
     "to-markdown": "0.0.3",
     "underscore": "^1.8.3",
