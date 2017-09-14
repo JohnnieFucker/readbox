@@ -40,6 +40,10 @@ service.add = function (req, res, next) {
     var urlObj = URL.parse(url);
     var user_id = req.session.user_id;
     var url_md5 = utils.md5(url);
+    var favicon = req.body.favicon || '';
+    var html = req.body.html || '';
+    var hostname = req.body.hostname;
+    var title = req.body.title;
     Article.schema.findOne({url_md5: url_md5})
         .select("_id")
         .exec(function (error, result) {
@@ -55,19 +59,14 @@ service.add = function (req, res, next) {
                         service.restSuccess(res);
                     });
                 } else {
-                    readability(url, {
-                        headers: {
-                            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-                            'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh-TW;q=0.4',
-                            'Cache-Control': 'max-age=0',
-                            'Connection': 'keep-alive',
-                            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
-                        }
-                    }, function (err, article) {
-                        article.hostname = urlObj.hostname;
-                        article.favico = getFavIcon(article.document, urlObj);
-                        addArticleToDB(article, url, url_md5, user_id, function (err) {
-                            article.close();
+                    if (html !== ''{
+                        var newArticle = {
+                            hostname: hostname,
+                            favico: favicon,
+                            title: title,
+                            content: html,
+                        };
+                        addArticleToDB(newArticle, url, url_md5, user_id, function (err) {
                             if (err) {
                                 console.log(err);
                                 service.restError(res, -1, err);
@@ -75,7 +74,32 @@ service.add = function (req, res, next) {
                             }
                             service.restSuccess(res);
                         });
-                    });
+                    } else {
+                        readability(url, {
+                            headers: {
+                                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                                'Accept-Language': 'en-US,en;q=0.8,zh-CN;q=0.6,zh-TW;q=0.4',
+                                'Cache-Control': 'max-age=0',
+                                'Connection': 'keep-alive',
+                                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+                            }
+                        }, function (err, article) {
+                            article.hostname = hostname;
+                            if (favicon === '') {
+                                favicon = getFavIcon(article.document, urlObj);
+                            }
+                            article.favico = favicon;
+                            addArticleToDB(article, url, url_md5, user_id, function (err) {
+                                article.close();
+                                if (err) {
+                                    console.log(err);
+                                    service.restError(res, -1, err);
+                                    return;
+                                }
+                                service.restSuccess(res);
+                            });
+                        });
+                    }
                 }
             }
         });
