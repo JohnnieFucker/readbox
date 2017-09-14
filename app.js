@@ -21,8 +21,8 @@ app.use(partials());
 app.use(favicon(__dirname + '/public/images/fav.ico'));
 app.use(logger('dev'));
 app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb', extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -37,7 +37,7 @@ app.use(session({
         port: sysConfig.redis.jwtServer.port,
         ttl: sysConfig.sessionConfig.maxAge
     }),
-    cookie: {maxAge: sysConfig.sessionConfig.maxAge,secure: false},
+    cookie: {maxAge: sysConfig.sessionConfig.maxAge, secure: false},
     resave: false,
     saveUninitialized: true
 }));
@@ -46,31 +46,31 @@ app.use(session({
 var jwtHandler = require('./libs/jwtHandler.js');
 
 //鉴权拦截
-app.use(function(req, res, next){
-    if(loader.env != 'production'){
-        console.log(req.url + '  [params]:' + JSON.stringify(req.params)+'[body]:' + JSON.stringify(req.body));
+app.use(function (req, res, next) {
+    if (loader.env != 'production') {
+        console.log(req.url + '  [params]:' + JSON.stringify(req.params) + '[body]:' + JSON.stringify(req.body));
     }
     var whiteList = sysConfig.whiteList;
-    for(var item of whiteList){
+    for (var item of whiteList) {
         var urlArr = req.path.split('/');
         var itemArr = item.split('/');
-        if(urlArr.length==itemArr.length){
+        if (urlArr.length == itemArr.length) {
             var isMate = true;
-            for(var i=0;i<urlArr.length;i++){
-                if(itemArr[i]==='*'||urlArr[i]===itemArr[i]){
+            for (var i = 0; i < urlArr.length; i++) {
+                if (itemArr[i] === '*' || urlArr[i] === itemArr[i]) {
 
-                }else{
-                    isMate= false;
+                } else {
+                    isMate = false;
                     break;
                 }
             }
-            if(isMate){
+            if (isMate) {
                 return next();
             }
         }
     }
-    jwtHandler.checkJWT(req, function(isAuth){
-        if(!isAuth){
+    jwtHandler.checkJWT(req, function (isAuth) {
+        if (!isAuth) {
             res.redirect('/login');
             return;
         }
@@ -80,14 +80,14 @@ app.use(function(req, res, next){
 
 //加载路由
 var routes = importer('./routes');
-for(var key in routes){
+for (var key in routes) {
     var routeClass = routes[key];
-    var routeInstance = new routeClass(app,key, sysConfig);
+    var routeInstance = new routeClass(app, key, sysConfig);
     routeInstance.initRouter();
 }
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -98,7 +98,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res) {
+    app.use(function (err, req, res) {
         res.status(err.status || 500);
         res.render('error.ejs', {
             message: err.message,
@@ -109,7 +109,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res) {
+app.use(function (err, req, res) {
     res.status(err.status || 500);
     res.render('error.ejs', {
         message: err.message,
