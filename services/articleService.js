@@ -59,7 +59,7 @@ service.add = function (req, res, next) {
                         service.restSuccess(res);
                     });
                 } else {
-                    if (html !== ''{
+                    if (html !== '') {
                         var newArticle = {
                             hostname: hostname,
                             favico: favicon,
