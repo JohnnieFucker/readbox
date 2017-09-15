@@ -90,10 +90,8 @@ pre {
 }
 
 .titleBox {
-    font-size: 1.5em;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
+    font-size: 2em;
+    line-height:4em;
 }
 
 .summaryBox {
