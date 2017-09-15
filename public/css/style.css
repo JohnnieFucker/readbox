@@ -5,9 +5,9 @@
 body {
     padding: 5px 10px;
     font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
-    color: #302c22;
-    font-size: 150%;
-    line-height: 1.6;
+    color: #666;
+    font-size: 140%;
+    line-height: 1.5;
     background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat fixed #fff;
 }
 
@@ -124,13 +124,18 @@ pre {
     margin: 0 5px;
     width: 1em;
 }
+@media (min-width: 1200px){
+    .container {
+        width: 1000px;
+    }
+}
 
 @media (max-width: 900px) {
     body {
         padding: 10px;
         font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
         background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat fixed #fff;
-        color: #302c22;
+        color: #666;
         font-size: 200%;
         line-height: 1.6;
         word-wrap: break-word;
