@@ -26,6 +26,7 @@
     "express": "~4.11.1",
     "express-partials": "^0.3.0",
     "express-session": "^1.11.3",
+    "jsonfile": "^4.0.0",
     "jwt-simple": "^0.3.1",
     "moment": "^2.9.0",
     "mongoose": "^4.5.3",
