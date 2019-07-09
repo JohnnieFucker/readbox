@@ -96,8 +96,8 @@ function dealMsg(url) {
 
 
 controller.youdao = function (req, res, next) {
-    const params = req.body.params;
-    let url = 'https://fanyi.youdao.com/openapi.do?' + params;
+    const params = req.query;
+    let url = `https://fanyi.youdao.com/openapi.do?keyfrom=${params.keyfrom}&key=${params.key}&type=data&doctype=${params.doctype}&version=${params.version}&q=${params.q}`;
     request(url).pipe(res,{end: true});
 
 };

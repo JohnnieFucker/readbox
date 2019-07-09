@@ -25,7 +25,7 @@ services.push({
 
 //youdao
 services.push({
-    type:'post',
+    type:'get',
     url:'/youdao',
     handler:handler.youdao
 });
