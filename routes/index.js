@@ -23,6 +23,13 @@ services.push({
     handler:handler.wxbot
 });
 
+//youdao
+services.push({
+    type:'post',
+    url:'/youdao',
+    handler:handler.youdao
+});
+
 class Router extends BaseRouter{
     constructor(server,name,config) {
         super(server,name,config);
