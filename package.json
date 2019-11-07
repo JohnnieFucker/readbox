@@ -29,7 +29,7 @@
     "jsonfile": "^4.0.0",
     "jwt-simple": ">=0.5.3",
     "moment": "^2.9.0",
-    "mongoose": "^4.5.3",
+    "mongoose": ">=5.7.5",
     "morgan": "^1.6.1",
     "node-readability": "^3.0.0",
     "redis": "^2.2.5",
