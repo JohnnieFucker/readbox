@@ -82,6 +82,10 @@ service.add = function (req, res, next) {
                                 'Cache-Control': 'max-age=0',
                                 'Connection': 'keep-alive',
                                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+                            },
+                            imgCrossDomainConfig:{
+                                imgUrlPrefix:'/images/grabed/',
+                                imgStorePath:'public/images/grabed/'
                             }
                         }, function (err, article) {
                             article.hostname = hostname;
