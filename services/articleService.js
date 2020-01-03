@@ -44,6 +44,8 @@ service.add = function (req, res, next) {
     var html = req.body.html || '';
     var hostname = req.body.hostname;
     var title = req.body.title;
+    console.log(url);
+    console.log(html);
     Article.schema.findOne({url_md5: url_md5})
         .select("_id")
         .exec(function (error, result) {
