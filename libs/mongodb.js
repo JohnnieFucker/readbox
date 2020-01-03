@@ -26,7 +26,6 @@ if (mongoConfig.replication) {
 // connectStr += `?authSource=${mongoConfig.db}`;
 console.log(connectStr);
 mongoose.connect(connectStr, {
-    useUnifiedTopology: true,
     useNewUrlParser: true,
     socketTimeoutMS: 0,
     keepAlive: true,
