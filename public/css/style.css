@@ -4,7 +4,7 @@
 
 body {
     padding: 5px 10px;
-    font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
+    font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
     color: #666;
     font-size: 140%;
     line-height: 1.5;
@@ -90,19 +90,19 @@ pre {
 }
 
 .titleBox {
-    font-size: 2em;
+    font-size: 3em;
     color:#333;
     margin: 1em 0;
 }
 
 .summaryBox {
     color: #555;
-    font-size: 1.2em;
+    font-size: 1.5em;
     text-indent:2em;
 }
 .summaryBox2{
     color: #555;
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-top: 20px;
 }
 .summaryBox2 img{
@@ -132,7 +132,7 @@ pre {
 @media (max-width: 900px) {
     body {
         padding: 10px;
-        font-family: 'Whitney SSm A', 'Whitney SSm B', 'helvetica neue', helvetica, sans-serif;
+        font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
         background: url(../images/f93a9060-255c-4b44-aebd-84b641b56039.jpg) center top no-repeat fixed #fff;
         color: #666;
         font-size: 200%;
