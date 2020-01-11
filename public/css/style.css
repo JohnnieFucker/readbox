@@ -95,6 +95,18 @@ pre {
     margin: 1em 0;
 }
 
+.listTitleBox {
+    font-size: 2em;
+    color:#333;
+    margin: 1em 0;
+}
+.listTitleBox a{
+    color:#333;
+}
+.listTitleBox a:hover{
+    text-decoration: none;
+}
+
 .summaryBox {
     color: #555;
     font-size: 1.5em;
@@ -102,8 +114,9 @@ pre {
 }
 .summaryBox2{
     color: #555;
-    font-size: 1.5em;
+    font-size: 1.6em;
     margin-top: 20px;
+    line-height: 1.8em;
 }
 .summaryBox2 img{
     display: block;
